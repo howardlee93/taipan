@@ -1,0 +1,4 @@
+controls panel  where all the game logic lives
+random events component: 1. fight, 2. seize opium, 3. bigger ship, 4. buy gun
+
+

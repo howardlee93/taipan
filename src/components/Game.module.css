@@ -1,0 +1,15 @@
+.container{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border-style: solid;
+
+}
+
+.main{
+    grid-column: 1;
+}
+
+.aside{
+    grid-column: 2
+}
+

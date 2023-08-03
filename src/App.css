@@ -1,0 +1,16 @@
+#root {
+  max-width: 100vmax;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+input{
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+}
+
+ul{
+  list-style-type: none;
+}
