@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useState} from 'react';
 import Game from '../components/Game';
 import { useDispatch } from 'react-redux';
 import {addName, setStartOptions} from '../store/gameSlice';
@@ -10,10 +10,6 @@ const Play = ()=> {
     const [shipOption, setShipOption] = useState();
     const [nameReady, setNameReady] = useState(false);
     const [shipOptionReady, setShipOptionReady] = useState(false);
-    
-    useEffect(()=>{
-        console.log(shipOption);
-    },[shipOption])
 
     const handleSetName = e =>{
         if (e.key === 'Enter'){

@@ -55,13 +55,13 @@ const Report =(props)=>{
         if (ship.hold.find(elem => elem.name === 'Opium' && elem.amount > 0) ) chance +=20;
         
         if (chance  >= 90 ){
-            let taxAmount = Math.random()*(cash/2 -1) -1;
+            let taxAmount = Math.floor(Math.random()*(cash/2 -1) -1);
             dispatch(tax(taxAmount));
             alert(`you got taxed ${taxAmount}`)
         }
         
         if (chance > 80 && chance < 90){
-            let fineAmount = Math.random()*(cash/2 -1) -1;
+            let fineAmount = Math.floor(Math.random()*(cash/2 -1) -1);
             dispatch(fine(fineAmount))
             alert(`you got fined ${fineAmount} and all your opium seized`)
         }
@@ -81,7 +81,7 @@ const Report =(props)=>{
 
     return(
         <> 
-        cash: ${Math.floor(cash)} bank: ${bank}
+        cash: ${Math.floor(cash)} bank: ${Math.floor(bank)}
         <div id="report">
         Report
         <p>Prices:</p>
