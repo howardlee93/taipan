@@ -5,8 +5,7 @@ import {GOODS, locations, buyGoods, sellGoods, addNextTurn, deposit, withdraw,
 import { useEffect, useState } from "react";
 import Transfer from './Transfer';
 import FixForm from "./FixForm";
-import EventDisplay from "./EventDisplay";
-
+import BuySellForm from './BuySellForm';
 
 const Transaction = (props)=>{
     const {type, setModalOpen} = props;
@@ -83,95 +82,110 @@ const Transaction = (props)=>{
             />
         )
     }
+
+    if (type === 'buy' || type === 'sell'){
+        return (
+            <BuySellForm
+                type={type}
+                good={good}
+                amount={amount}
+                setAmount={setAmount}
+                setGood={setGood}
+                setModalOpen={setModalOpen}
+            />
+        )
+    }
     
-    if (type === 'buy') {
-        return (
-            <>
-            { good === undefined ? 
-            <>
-                <p> What do you want to buy?</p>
-                <input type="text" autoFocus
-                onKeyUp={e=>{
-                    const val = e.target.value;
+    // if (type === 'buy') {
+    //     return (
+    //         <>
+    //         { good === undefined ? 
+    //         <>
+    //             <p> What do you want to buy?</p>
+    //             <input type="text" autoFocus
+    //             onKeyUp={e=>{
+    //                 const val = e.target.value;
 
-                    if(e.key === 'Enter'){ 
-                        console.log('hi', val)
-                        if (e.target.value === 'o') setGood('Opium')
-                        if (e.target.value === 's') setGood('Silk')
-                        if (e.target.value === 'a') setGood('Arms')
-                        if (e.target.value === 'g') setGood('General')
-                        }
-                }
-               }/>
+    //                 if(e.key === 'Enter'){ 
+    //                     console.log('hi', val)
+    //                     if (e.target.value === 'o') setGood('Opium')
+    //                     if (e.target.value === 's') setGood('Silk')
+    //                     if (e.target.value === 'a') setGood('Arms')
+    //                     if (e.target.value === 'g') setGood('General')
+    //                     }
+    //             }
+    //            }/>
 
-            </>
-             : ""}
-            { good && amount === undefined ? 
-            <>
-                <p> How much {good} do you want to buy?  Enter number</p> 
-                <input type="number" autoFocus
-                onKeyUp={e=>{
-                    if(e.key === 'Enter') {
-                        setAmount(e.target.value)
-                        dispatch(buyGoods({
-                            good: good,
-                            amount: e.target.value
-                            })
-                        )
-                        setGood()
-                        setAmount()
-                        setModalOpen(false)
-                    }
-                }
-                }/>
-            </>
-                :""}
-            </>
-        )
-    }
-    if (type === 'sell'){
-        return (
-            <>
-            { good === undefined ? 
-            <>
-                <p> What do you want to sell?</p>
-                <input type="text" autoFocus
-                onKeyUp={e=>{
-                    console.log(e.target.value)
-                    if(e.key === 'Enter'){ 
-                        console.log('hi')
-                        if (e.target.value === 'o') setGood('Opium')
-                        if (e.target.value === 's') setGood('Silk')
-                        if (e.target.value === 'a') setGood('Arms')
-                        if (e.target.value === 'g') setGood('General')
-                        }
-                }
-               }/>
-            </>
-             : ""}
-            { good && amount === undefined? 
-            <>
-            <p> How much {good} do you want to sell? Enter number</p>
-            <input type="number" autoFocus
-                onKeyUp={e=>{
-                    if(e.key === 'Enter') {
-                        setAmount(e.target.value)
-                        dispatch(sellGoods({
-                            good:good, 
-                            amount:e.target.value
-                            })
-                        )
-                        setGood('')
-                        setAmount(0)
-                        setModalOpen(false)
-                    }
-                }
-                }/>
-            </>
-                :""}
-            </>
-        )
-    }
+    //         </>
+    //          : ""}
+    //         { good && amount === undefined ? 
+    //         <>
+    //             <p> How much {good} do you want to buy?  Enter number</p> 
+    //             <input type="number" autoFocus
+    //             onKeyUp={e=>{
+    //                 if(e.key === 'Enter') {
+    //                     setAmount(e.target.value)
+    //                     dispatch(buyGoods({
+    //                         good: good,
+    //                         amount: e.target.value
+    //                         })
+    //                     )
+    //                     setGood()
+    //                     setAmount()
+    //                     setModalOpen(false)
+    //                 }
+    //             }
+    //             }/>
+    //         </>
+    //             :""}
+    //         </>
+    //     )
+    // }
+
+    // if (type === 'sell'){
+    //     return (
+    //         <>
+    //         { good === undefined ? 
+    //         <>
+    //             <p> What do you want to sell?</p>
+    //             <input type="text" autoFocus
+    //             onKeyUp={e=>{
+    //                 console.log(e.target.value)
+    //                 if(e.key === 'Enter'){ 
+    //                     console.log('hi')
+    //                     if (e.target.value === 'o') setGood('Opium')
+    //                     if (e.target.value === 's') setGood('Silk')
+    //                     if (e.target.value === 'a') setGood('Arms')
+    //                     if (e.target.value === 'g') setGood('General')
+    //                     }
+    //             }
+    //            }/>
+    //         </>
+    //          : ""}
+    //         { good && amount === undefined? 
+    //         <>
+    //         <p> How much {good} do you want to sell? Enter number</p>
+    //         <input type="number" autoFocus
+    //             onKeyUp={e=>{
+    //                 if(e.key === 'Enter') {
+    //                     setAmount(e.target.value)
+    //                     dispatch(sellGoods({
+    //                         good:good, 
+    //                         amount:e.target.value
+    //                         })
+    //                     )
+    //                     setGood('')
+    //                     setAmount(0)
+    //                     setModalOpen(false)
+    //                 }
+    //             }
+    //             }/>
+    //         </>
+    //             :""}
+    //         </>
+    //     )
+    // }
+
     if (type === 'transfer'){
         return (
             <Transfer
@@ -248,7 +262,7 @@ const Transaction = (props)=>{
                     }
                 }}
                 />
-                {eventLoading ? <EventDisplay message={message}/> :""}
+                {eventLoading ? <p>{message}</p> :""}
             </>
         )
     }
