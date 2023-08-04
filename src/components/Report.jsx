@@ -1,6 +1,6 @@
 import styles from './Game.module.css';
 import { useSelector, useDispatch } from "react-redux";
-import {fine, tax} from '../store/gameSlice';
+import {fine, tax, setVoyageStatus} from '../store/gameSlice';
 import { useEffect, useState } from 'react';
 import Transaction from './Transaction';
 import GunModal from './GunModal';
@@ -12,6 +12,7 @@ const Report =(props)=>{
     const prices = useSelector(state => state.game.prices);
     const turn = useSelector(state => state.game.turn);
     const ship = useSelector(state => state.game.ship);
+    const midVoyage = useSelector(state => state.game.midVoyage);
     const {location} = props;
 
     const [transactionType, setTransactionType] = useState();
@@ -50,34 +51,35 @@ const Report =(props)=>{
     },)
 
     const randEvent = ()=>{
-        let chance = Math.floor((100-1) * Math.random() - 1);
-        if (cash > 30000) chance +=20;
-        if (ship.hold.find(elem => elem.name === 'Opium' && elem.amount > 0) ) chance +=20;
+        // let chance = Math.floor((100-1) * Math.random() - 1);
+        // if (cash > 30000) chance +=20;
+        // if (ship.hold.find(elem => elem.name === 'Opium' && elem.amount > 0) ) chance +=20;
         
-        if (chance  >= 90 ){
-            let taxAmount = Math.floor(Math.random()*(cash/2 -1) -1);
-            dispatch(tax(taxAmount));
-            alert(`you got taxed ${taxAmount}`)
-        }
+        // if (chance  >= 90 ){
+        //     let taxAmount = Math.floor(Math.random()*(cash/2 -1) -1);
+        //     dispatch(tax(taxAmount));
+        //     alert(`you got taxed ${taxAmount}`)
+        // }
         
-        if (chance > 80 && chance < 90){
-            let fineAmount = Math.floor(Math.random()*(cash/2 -1) -1);
-            dispatch(fine(fineAmount))
-            alert(`you got fined ${fineAmount} and all your opium seized`)
-        }
-        if (chance > 60 && chance <=80){
-            setGunModalOpen(true)
-        } 
+        // if (chance > 80 && chance < 90){
+        //     let fineAmount = Math.floor(Math.random()*(cash/2 -1) -1);
+        //     dispatch(fine(fineAmount))
+        //     alert(`you got fined ${fineAmount} and all your opium seized`)
+        // }
+        // if (chance > 60 && chance <=80){
+        //     setGunModalOpen(true)
+        // } 
+        setGunModalOpen(true) // test
 
     }
+
     useEffect(()=>{
-        //always option to fix
-        if (turn >= 1){
+        if (turn >=1 && midVoyage === false){
         randEvent()
         // setGunModalOpen(true)
          console.log( `got to ${location}`)
         }
-    }, [location, turn]);
+    }, [turn, midVoyage]);
 
     return(
         <> 

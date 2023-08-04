@@ -176,7 +176,8 @@ const gameSlice = createSlice({
         },
         buyGuns: (state, action) =>{
           state.ship.guns++;
-          state.cash -= Number(action.payload)
+          state.cash -= Number(action.payload);
+          
         },
         tax: ( state, action) =>{
           state.cash -= Number(action.payload)
