@@ -75,8 +75,7 @@ const Report =(props)=>{
 
     useEffect(()=>{
         if (turn >=1 && midVoyage === false){
-        randEvent()
-        // setGunModalOpen(true)
+            randEvent()
          console.log( `got to ${location}`)
         }
     }, [turn, midVoyage]);
