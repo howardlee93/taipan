@@ -27,7 +27,6 @@ export const GOODS = [
   
   ];
 
-
 const gameSlice = createSlice({
     name:'game',
     initialState:{
@@ -70,22 +69,29 @@ const gameSlice = createSlice({
         addName: (state, action) => {
             state.name = action.payload
         },
-        addNextTurn: (state, action)=>{
+        addNextTurn:  {
+          reducer: (state, action)=>{
             const quarters = ['spring','summer','fall','winter'];
             state.turn++;
             state.year += Math.floor(state.turn / 4 );
             state.quarter = quarters[state.turn % 4];
-            const location = locations[action.payload];
+            const location = locations[action.payload.location];
             state.location = location
-            //reset prices 
-            state.prices = GOODS.map(good => {
-            let price = Math.floor((good.salesRange[1] - good.salesRange[0]) * Math.random());
-            return {
-              name: good.name,
-              price: price
-            }
-          })
-
+            state.prices = action.payload.goodPrices;
+          },
+          prepare:(location)=>{
+            let goodPrices = GOODS.map(good => {
+              let price = Math.floor((good.salesRange[1] - good.salesRange[0]) * Math.random());
+              return {
+                name: good.name,
+                price: price
+              }
+            })
+            return {payload:{
+              goodPrices,
+              location
+            }};
+          }
         },
         setStartOptions: (state, action) =>{
           console.log(action.payload)
