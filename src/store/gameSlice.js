@@ -38,7 +38,7 @@ const gameSlice = createSlice({
         turn: 0,
         cash:0,
         bank:0,
-        // debt:0,
+        midVoyage: false,
         ship:{
           status: 100,
           holdSize: 60,
@@ -185,6 +185,9 @@ const gameSlice = createSlice({
           const opium = state.ship.hold.find(elem => elem.name === 'Opium');
           opium.amount = 0;
           state.cash -= Number(action.payload)
+        },
+        setVoyageStatus: (state, ) =>{
+          state.midVoyage = !state.midVoyage
         }
 
     },
@@ -193,7 +196,7 @@ const gameSlice = createSlice({
 
 export const {addName, addNextTurn, setStartOptions, buyGoods, sellGoods,
   deposit, withdraw, moveToCargo, moveToShip,
-  addMoney, damageShip, blownPort, buyGuns, upgradeShip, tax, fine
+  addMoney, damageShip, blownPort, buyGuns, upgradeShip, tax, fine, setVoyageStatus
 } = gameSlice.actions;
 
 export default gameSlice.reducer;
