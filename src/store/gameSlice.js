@@ -191,11 +191,9 @@ const gameSlice = createSlice({
    
 });
 
-
-
-
 export const {addName, addNextTurn, setStartOptions, buyGoods, sellGoods,
   deposit, withdraw, moveToCargo, moveToShip,
   addMoney, damageShip, blownPort, buyGuns, upgradeShip, tax, fine
 } = gameSlice.actions;
+
 export default gameSlice.reducer;

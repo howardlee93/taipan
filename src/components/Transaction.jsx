@@ -42,15 +42,15 @@ const Transaction = (props)=>{
         if (chance >= 80 && chance < 90){ // pirate attack
             let winChance = Math.random() + guns * 0.02;
             if (winChance > 0.5){// ship wins
-                moneyGained = (cash * Math.random() + cash);
+                moneyGained = Math.floor(cash * Math.random() + cash);
                 damage = Math.random() * (20 -0) + 0;
                 dispatch(addMoney(moneyGained))
                 dispatch(damageShip(damage));
                 message = ` won ${moneyGained} from the pirates and suffered ${damage} % damage`;
                 setMessage(message);
             }else{ // ship loses
-                if (cash > 0)  moneyGained = -1 * cash * Math.random()
-                else damage = Math.random() * (40 - 0) + 0; // if no cash, pirates wreaks more damage
+                if (cash > 0)  moneyGained = Math.floor(-1 * cash * Math.random())
+                else damage = Math.floor(Math.random() * (40 - 0) + 0); // if no cash, pirates wreaks more damage
                 dispatch(addMoney(moneyGained))
                 dispatch(damageShip(damage));
                 message = `lost against the pirates and suffered ${damage} % damage and they took ${ moneyGained?
