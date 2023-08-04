@@ -61,7 +61,9 @@ const Report =(props)=>{
             alert(`you got taxed ${taxAmount}`)
         }
         
-        if (chance > 80 && chance < 90 ){ //ship.hold.find(elem => elem.name === 'Opium' && elem.amount > 0)
+        if (chance > 80 && chance < 90
+            && ship.hold.find(elem => elem.name === 'Opium' && elem.amount > 0)
+            ){ //no fine if there is 0 opium
             let fineAmount = Math.floor(Math.random()*(cash/2 -1) -1);
             dispatch(fine(fineAmount))
             alert(`you got fined ${fineAmount} and all your opium seized`)
