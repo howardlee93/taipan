@@ -162,7 +162,7 @@ const Transaction = (props)=>{
                 <input type="number" autoFocus 
                  min="1" max="6"
                 onKeyUp={e=>{
-                    if(e.key === "Enter" && e.target.value){
+                    if(e.key === "Enter" && e.target.value < 7 && e.target.value > 0){
                         e.preventDefault();
                         clearTimeout(eventRef);
                         setEventLoading(true);

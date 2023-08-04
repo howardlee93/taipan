@@ -97,6 +97,7 @@ const Report =(props)=>{
         <p>Should I <b>buy</b>, <b>sell</b>, or <b>quit turn?</b></p>
         }
         {gunModalOpen ? <GunModal cash={cash} setGunModalOpen={setGunModalOpen}/> : ""}
+        
         {modalOpen ? 
         <Transaction 
         setModalOpen={setModalOpen}
