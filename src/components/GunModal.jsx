@@ -31,12 +31,8 @@ const GunModal = props =>{
         }
         }/>
         <p>{message}</p>
-
         </>
     )
-
-
-
 }
 
 export default GunModal;

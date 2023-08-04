@@ -117,7 +117,7 @@ const Transaction = (props)=>{
             <p> How much do you want to deposit?</p>
             <input type='number' autoFocus
             onKeyUp={e=>{
-                if (e.key === 'Enter'){
+                if (e.key === 'Enter' && e.target.value){
                     setDepositAmount(e.target.value)
                     dispatch(deposit(e.target.value))
                 }
@@ -132,7 +132,7 @@ const Transaction = (props)=>{
             <p>How much do you want to withdraw?</p>
             <input type='number' autoFocus
             onKeyUp={e=>{
-                if (e.key === 'Enter'){
+                if (e.key === 'Enter' && e.target.value){
                     setWithdrawAmount(e.target.value)
                     dispatch(withdraw(e.target.value))
                     setModalOpen(false)
@@ -161,7 +161,7 @@ const Transaction = (props)=>{
                 <input type="number" autoFocus 
                  min="1" max="6"
                 onKeyUp={e=>{
-                    if(e.key === "Enter"){
+                    if(e.key === "Enter" && e.target.value){
                         e.preventDefault();
                         clearTimeout(eventRef);
                         setEventLoading(true);

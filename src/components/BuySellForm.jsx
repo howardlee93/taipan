@@ -16,7 +16,7 @@ const BuySellForm = props =>{
             onKeyUp={e=>{
                 const val = e.target.value;
 
-                if(e.key === 'Enter'){ 
+                if(e.key === 'Enter' && e.target.value){ 
                     console.log('hi', val)
                     if (e.target.value === 'o') setGood('Opium')
                     if (e.target.value === 's') setGood('Silk')
@@ -33,7 +33,7 @@ const BuySellForm = props =>{
             <p> How much {good} do you want to buy?  Enter number</p> 
             <input type="number" autoFocus
             onKeyUp={e=>{
-                if(e.key === 'Enter') {
+                if(e.key === 'Enter' && e.target.value) {
                     setAmount(e.target.value)
 
                     if (type === 'buy'){

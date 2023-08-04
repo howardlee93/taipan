@@ -12,7 +12,7 @@ const Play = ()=> {
     const [shipOptionReady, setShipOptionReady] = useState(false);
 
     const handleSetName = e =>{
-        if (e.key === 'Enter'){
+        if (e.key === 'Enter' && e.target.value){
             setName(e.target.value);
             dispatch(addName(e.target.value));
             setNameReady(true)
@@ -20,7 +20,7 @@ const Play = ()=> {
     }
 
     const handleSetShipOption = e =>{
-        if (e.key === 'Enter'){
+        if (e.key === 'Enter' && e.target.value){
             setShipOption(e.target.value);
             dispatch(setStartOptions(e.target.value));
             setShipOptionReady(true);
@@ -43,7 +43,7 @@ const Play = ()=> {
 
             <h1> Do you want to start with:</h1>
                 <ul>
-                    <li> 1. Cash and debt? ($5000)</li>
+                    <li> 1. Cash? ($5000)</li>
                     <li> 2. Five guns (and no cash)</li>
                     <input type="text" name="player-start-option" 
                     onChange={e=>setShipOption(e.target.value)}

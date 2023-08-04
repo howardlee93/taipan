@@ -16,7 +16,7 @@ const Transfer = (props) =>{
             <p> What do you want to move to warehouse?</p>
             <input type='text' autoFocus
                 onKeyUp={e=>{
-                    if(e.key === 'Enter'){ 
+                    if(e.key === 'Enter' && e.target.value){ 
                         console.log('hi')
                         if (e.target.value === 'o') setGood('Opium')
                         if (e.target.value === 's') setGood('Silk')
@@ -33,7 +33,7 @@ const Transfer = (props) =>{
                 <p>How much {good} do you want to move to the warehouse? Enter number.</p>
                 <input type="number" autoFocus
                 onKeyUp={e=>{
-                    if(e.key === 'Enter') {
+                    if(e.key === 'Enter' && e.target.value) {
                         setAmount(e.target.value)
                         console.log('bye')
                         dispatch(moveToCargo({
