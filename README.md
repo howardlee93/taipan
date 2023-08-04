@@ -1,6 +1,6 @@
 # taipan
 
-a react clone of the classic game [Taipan] (<https://taipangame.com/>)
+a react clone of the classic game [Taipan](https://taipangame.com/)
 
 ## changes
 
@@ -10,7 +10,7 @@ instead of being robbed, you are taxed
 
 combines fix ship and upgrade ship
 
-no debt -- never played it with that option so skipping it
+no debt or "donations"
 
 ## todo/improvements
 
