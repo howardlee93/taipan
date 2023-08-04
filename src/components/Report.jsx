@@ -1,6 +1,6 @@
 import styles from './Game.module.css';
 import { useSelector, useDispatch } from "react-redux";
-import {fine, tax} from '../store/gameSlice';
+import {fine, tax, setVoyageStatus} from '../store/gameSlice';
 import { useEffect, useState } from 'react';
 import Transaction from './Transaction';
 import GunModal from './GunModal';
@@ -12,6 +12,7 @@ const Report =(props)=>{
     const prices = useSelector(state => state.game.prices);
     const turn = useSelector(state => state.game.turn);
     const ship = useSelector(state => state.game.ship);
+    const midVoyage = useSelector(state => state.game.midVoyage);
     const {location} = props;
 
     const [transactionType, setTransactionType] = useState();
@@ -60,7 +61,7 @@ const Report =(props)=>{
             alert(`you got taxed ${taxAmount}`)
         }
         
-        if (chance > 80 && chance < 90){
+        if (chance > 80 && chance < 90 ){ //ship.hold.find(elem => elem.name === 'Opium' && elem.amount > 0)
             let fineAmount = Math.floor(Math.random()*(cash/2 -1) -1);
             dispatch(fine(fineAmount))
             alert(`you got fined ${fineAmount} and all your opium seized`)
@@ -68,16 +69,15 @@ const Report =(props)=>{
         if (chance > 60 && chance <=80){
             setGunModalOpen(true)
         } 
-
     }
+
     useEffect(()=>{
-        //always option to fix
-        if (turn >= 1){
+        if (turn >=1 && midVoyage === false){
         randEvent()
         // setGunModalOpen(true)
          console.log( `got to ${location}`)
         }
-    }, [location, turn]);
+    }, [turn, midVoyage]);
 
     return(
         <> 

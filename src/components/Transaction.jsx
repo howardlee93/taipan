@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {GOODS, locations, buyGoods, sellGoods, addNextTurn, deposit, withdraw,
-    addMoney, damageShip, blownPort, buyGuns, upgradeShip
+    addMoney, damageShip, blownPort, buyGuns, upgradeShip, setVoyageStatus
 } from '../store/gameSlice';
 import { useEffect, useState } from "react";
 import Transfer from './Transfer';
@@ -66,6 +66,7 @@ const Transaction = (props)=>{
         setTimeout(()=>{
             setEventLoading(false);
             setModalOpen(false)
+            dispatch(setVoyageStatus())
         },4000)
     }
 
@@ -168,6 +169,7 @@ const Transaction = (props)=>{
                         dispatch(addNextTurn(e.target.value -1))
                         generateRandEvent();
                         //set random variables?
+                        dispatch(setVoyageStatus())
                         eventRef();
                     }
                 }}
